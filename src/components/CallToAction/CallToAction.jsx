@@ -1,14 +1,42 @@
-import classes from './CallToAction.module.scss';
+import classes from "./CallToAction.module.scss";
+import { motion } from "framer-motion";
+import { MButton } from "components/Button";
 
-import { Button } from 'components/Button'
+const textAnimation = {
+  hidden: {
+    y: -100,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
+
+const BtnAnimation = {
+  hidden: {
+    y:100,
+    opacity: 0,
+  },
+  visible: {
+    y:0, 
+    opacity: 1,
+  }
+}
 
 const CallToAction = () => {
   return (
-    <section className={classes.CallToAction}>
-      <h2>Boost your links today</h2>
-      <Button>Get Started</Button>
-    </section>
-  )
-}
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ amount: 0.6, once: true }}
+      className={classes.CallToAction}
+      style={{ overflow: "hidden" }}
+    >
+      <motion.h2 variants={textAnimation}>Boost your links today</motion.h2>
+      <MButton variants={BtnAnimation}>Get Started</MButton>
+    </motion.section>
+  );
+};
 
-export {CallToAction};
+export { CallToAction };
